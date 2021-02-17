@@ -26,11 +26,16 @@
       isBright(line: number, row: number): Boolean {
         return line === this.brightLine && row === this.brightRow;
       },
+      updateSquareColor(): void {
+        const colorIndex: number = this.random(this.colors.length - 1);
+        this.backgroundColor = this.colors[colorIndex];
+      },
       selectSquare(line: number, row: number): void {
         if (this.isBright(line, row)) {
           this.squares++;
           this.brightLine = this.random(this.squares);
           this.brightRow = this.random(this.squares);
+          this.updateSquareColor();
         } else {
           console.log("lose");
         }
@@ -50,13 +55,12 @@
         "#574b90",
       ];
       const squares = 2;
-      const brightLine: number = this.random(squares);
-      const brightRow: number = this.random(squares);
       const colorIndex: number = this.random(colors.length - 1);
       return {
-        squares,
-        brightLine,
-        brightRow,
+        colors,
+        squares: 2,
+        brightLine: this.random(squares),
+        brightRow: this.random(squares),
         backgroundColor: colors[colorIndex],
       };
     },
@@ -68,6 +72,6 @@
     display: flex;
     flex-direction: column;
     height: 80%;
-    width: 80%;
+    width: 50%;
   }
 </style>

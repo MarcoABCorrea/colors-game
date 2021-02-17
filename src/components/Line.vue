@@ -15,7 +15,7 @@
   .line {
     display: flex;
     flex: 1;
-    width: 60%;
+    width: 100%;
     margin: auto;
   }
 </style>
