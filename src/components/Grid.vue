@@ -31,13 +31,16 @@
         this.backgroundColor = this.colors[colorIndex];
       },
       selectSquare(line: number, row: number): void {
+        if (this.squares === 2) {
+          this.startTime = new Date().getTime();
+        }
         if (this.isBright(line, row)) {
           this.squares++;
           this.brightLine = this.random(this.squares);
           this.brightRow = this.random(this.squares);
           this.updateSquareColor();
         } else {
-          console.log("lose");
+          this.$emit("gameOver", this.startTime, this.squares - 2);
         }
       },
     },
@@ -54,11 +57,12 @@
         "#546de5",
         "#574b90",
       ];
-      const squares = 2;
       const colorIndex: number = this.random(colors.length - 1);
+      const squares = 2;
       return {
         colors,
-        squares: 2,
+        squares,
+        startTime: 0,
         brightLine: this.random(squares),
         brightRow: this.random(squares),
         backgroundColor: colors[colorIndex],
