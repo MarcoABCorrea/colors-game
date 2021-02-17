@@ -67,6 +67,7 @@
   .grid {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 80%;
+    width: 80%;
   }
 </style>
